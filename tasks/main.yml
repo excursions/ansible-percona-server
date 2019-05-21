@@ -14,10 +14,15 @@
   apt_repository:
     repo: "{{ item }}"
     state: present
-    update_cache: yes
+    update_cache: no
   with_items:
      - deb http://repo.percona.com/apt {{ ansible_distribution_release }} main
      - deb-src http://repo.percona.com/apt {{ ansible_distribution_release }} main
+
+- name: Update and upgrade apt
+  apt:
+    upgrade: yes
+    update_cache: yes
 
 - name: Install python packages
   apt: pkg={{ item }} state=present
