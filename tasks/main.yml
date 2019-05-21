@@ -6,6 +6,10 @@
 - name: Add Percona apt signing key
   apt_key: keyserver=keyserver.ubuntu.com id=8507EFA5 state=present
 
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+
 - name: Add Percona repositories
   apt_repository:
     repo: "{{ item }}"
